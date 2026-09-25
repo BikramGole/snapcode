@@ -1,0 +1,133 @@
+/* overlay.css - injected styles for highlight, tooltip, and modal.
+   Loaded via content script CSS injection (see content.js note) and listed
+   as a web_accessible_resource. All selectors are namespaced to avoid
+   clashing with host page styles. */
+
+.annotator-highlight {
+  position: fixed;
+  z-index: 2147483646;
+  pointer-events: none;
+  background: rgba(56, 132, 255, 0.18);
+  border: 1px solid rgba(56, 132, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(56, 132, 255, 0.35);
+  transition: top .04s linear, left .04s linear, width .04s linear, height .04s linear;
+  display: none;
+}
+
+.annotator-label {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  background: #1f6feb;
+  color: #fff;
+  font: 11px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+  padding: 0 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.annotator-tooltip {
+  position: fixed;
+  z-index: 2147483647;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 22, 28, 0.85);
+  color: #e6edf3;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font: 13px/1.4 system-ui, sans-serif;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.annotator-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  animation: annotator-fade .15s ease;
+}
+
+@keyframes annotator-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.annotator-modal__panel {
+  width: min(720px, 92vw);
+  max-height: 88vh;
+  overflow: auto;
+  background: rgba(22, 24, 30, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  color: #e6edf3;
+  font: 13px/1.5 system-ui, sans-serif;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.annotator-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+.annotator-modal__preview {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+  background: repeating-conic-gradient(#2a2d35 0% 25%, #23262d 0% 50%) 50% / 20px 20px;
+}
+.annotator-modal__preview img { max-width: 100%; max-height: 300px; border-radius: 8px; }
+.annotator-noshot { padding: 40px; color: #8b949e; }
+
+.annotator-tabs { display: flex; gap: 4px; padding: 8px 16px 0; }
+.annotator-tab {
+  background: transparent;
+  color: #8b949e;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font: inherit;
+}
+.annotator-tab.is-active { color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+.annotator-pane {
+  margin: 0 16px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 0 8px 8px 8px;
+  max-height: 240px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.annotator-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px;
+}
+.annotator-btn {
+  background: rgba(56, 132, 255, 0.18);
+  color: #e6edf3;
+  border: 1px solid rgba(56, 132, 255, 0.5);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  transition: background .12s ease;
+}
+.annotator-btn:hover { background: rgba(56, 132, 255, 0.32); }
+.annotator-btn:disabled { opacity: .4; cursor: not-allowed; }
+.annotator-close { background: transparent; border: none; font-size: 16px; }
