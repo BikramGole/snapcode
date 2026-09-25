@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>Annotator</title>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Annotator</h1>
+    <p>Press <kbd>Ctrl</kbd>+<kbd>.</kbd> on any page to toggle annotation mode, then click an element to capture.</p>
+    <button id="toggle" class="primary">Start annotating this tab</button>
+    <ul class="hints">
+      <li>Hover to highlight, click to capture.</li>
+      <li>Markdown is copied to clipboard automatically.</li>
+      <li>Press <kbd>Esc</kbd> to exit.</li>
+    </ul>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
