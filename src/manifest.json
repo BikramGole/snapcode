@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Annotator",
+  "version": "0.1.0",
+  "description": "Fast visual element-inspection tool for AI-assisted development. Hover, click, capture HTML/CSS/screenshot/selector to clipboard as Markdown.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "clipboardWrite",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["vendor/html2canvas.min.js", "capture.js", "overlay.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "toggle-annotation": {
+      "suggested_key": {
+        "default": "Ctrl+Period",
+        "mac": "Command+Period"
+      },
+      "description": "Toggle annotation mode"
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Annotator"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["overlay.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
